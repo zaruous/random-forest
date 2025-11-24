@@ -6,7 +6,7 @@ import os # Add this import statement
 
 #출력 디렉토리
 output_dir = "output"
-ticker = "005930.KS"
+ticker = "458760.KS"
 
 if __name__ == "__main__":
     # 데이터 다운로드: 주식, 환율(USD/KRW), 비트코인(BTC-USD)

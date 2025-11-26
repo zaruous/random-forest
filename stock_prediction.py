@@ -1,3 +1,4 @@
+from os.path import exists
 from platform import processor
 
 import yfinance as yf
@@ -20,7 +21,7 @@ def handle(ticker) :
     plot_filename = f"{output_dir}/{strDate}/{name}_stock_prediction_result_with_fx_btc.png"
     if Path(plot_filename).exists():
         print("파일이 존재합니다.")
-        exit()
+        return
 
     print(f"{ticker}의 주식 데이터를 다운로드합니다...")
     data = yf.download(ticker, start=start_date, end=end_date)
@@ -134,6 +135,8 @@ def handle(ticker) :
 
     str = "".join(buffer)
     reportFilename = f"{output_dir}/{strDate}/{name}.txt"
+
+    os.makedirs(f"{output_dir}/{strDate}", exist_ok=True)
     with open(reportFilename, "w", encoding="utf-8") as f:
         f.writelines(buffer)
 
@@ -181,6 +184,11 @@ def handle(ticker) :
 # PFE 화이자
 if __name__ == "__main__":
 
-    tickrr = "383310" + ".KS"
-    ticker = tickrr
-    handle(ticker)
+    tickers = ["161000", "053210", "005930", "458760", "383310"]
+    for tickrr in tickers:
+        ticker = tickrr + ".KS"
+        handle(ticker)
+
+    tickers = ["PFE"]
+    for tickrr in tickers:
+        handle(tickrr)

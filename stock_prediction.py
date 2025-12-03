@@ -15,6 +15,7 @@ def handle(ticker) :
     # 데이터 다운로드: 주식, 환율(USD/KRW), 비트코인(BTC-USD)
     end_date = datetime.now()
     start_date = end_date - timedelta(days=365)
+    
     strDate = end_date.strftime("%Y%m%d")
     name = yf.Ticker(ticker).info.get("longName")
 
@@ -180,11 +181,12 @@ def handle(ticker) :
 #tickrr = "053210" #스카이 라이프
 #tickrr = "005930" #삼전
 #tickrr = "458760" #타이거2
+# 026960 동서
 # 383310 에코프로이치엔
 # PFE 화이자
 if __name__ == "__main__":
 
-    tickers = ["161000", "053210", "005930", "458760", "383310"]
+    tickers = ["161000", "053210", "005930", "458760", "383310", "026960"]
     for tickrr in tickers:
         ticker = tickrr + ".KS"
         handle(ticker)
